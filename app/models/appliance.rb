@@ -1,6 +1,6 @@
 class Appliance < ActiveRecord::Base
-  ACTIONS = { :create => 'CREATE', :destroy => 'DESTROY' }
-  STATUSES = { :new => 'NEW', :created => 'CREATED', :error => 'ERROR', :removed => 'REMOVED', :removing => 'REMOVING'}
+  ACTIONS = {:create => 'CREATE', :destroy => 'DESTROY'}
+  STATUSES = {:new => 'NEW', :created => 'CREATED', :error => 'ERROR', :removed => 'REMOVED', :removing => 'REMOVING'}
 
   has_many :images
 
@@ -13,13 +13,13 @@ class Appliance < ActiveRecord::Base
     @@definitions
   end
 
-  def self.add_definition( name, definition )
+  def self.add_definition(name, definition)
     @@definitions[name] = definition
   end
 
-  def after_initialize
+  after_initialize do
     if self.status.nil?
-      self.status     = STATUSES[:new]
+      self.status = STATUSES[:new]
       self.created_at = self.updated_at = Time.now
     end
   end

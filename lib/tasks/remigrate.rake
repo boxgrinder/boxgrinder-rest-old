@@ -6,3 +6,4 @@ namespace :db do
     Rake::Task['db:migrate'].invoke
   end
 end
+

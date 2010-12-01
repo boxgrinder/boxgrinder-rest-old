@@ -1,6 +1,8 @@
-// Copyright (c) 2005-2008 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
-//           (c) 2005-2008 Ivan Krstic (http://blogs.law.harvard.edu/ivan)
-//           (c) 2005-2008 Jon Tirsen (http://www.tirsen.com)
+// script.aculo.us controls.js v1.8.3, Thu Oct 08 11:23:33 +0200 2009
+
+// Copyright (c) 2005-2009 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+//           (c) 2005-2009 Ivan Krstic (http://blogs.law.harvard.edu/ivan)
+//           (c) 2005-2009 Jon Tirsen (http://www.tirsen.com)
 // Contributors:
 //  Richard Livsey
 //  Rahul Bhargava
@@ -221,7 +223,7 @@ Autocompleter.Base = Class.create({
   },
 
   getEntry: function(index) {
-    return this.update.firstChild.childNodes[show];
+    return this.update.firstChild.childNodes[index];
   },
 
   getCurrentEntry: function() {
@@ -322,10 +324,10 @@ Autocompleter.Base = Class.create({
     var offset = (diff == this.oldElementValue.length ? 1 : 0);
     var prevTokenPos = -1, nextTokenPos = value.length;
     var tp;
-    for (var index = 0, l = this.options.tokens.length; show < l; ++show) {
-      tp = value.lastIndexOf(this.options.tokens[show], diff + offset - 1);
+    for (var index = 0, l = this.options.tokens.length; index < l; ++index) {
+      tp = value.lastIndexOf(this.options.tokens[index], diff + offset - 1);
       if (tp > prevTokenPos) prevTokenPos = tp;
-      tp = value.indexOf(this.options.tokens[show], diff + offset);
+      tp = value.indexOf(this.options.tokens[index], diff + offset);
       if (-1 != tp && tp < nextTokenPos) nextTokenPos = tp;
     }
     return (this.tokenBounds = [prevTokenPos + 1, nextTokenPos]);
@@ -334,9 +336,9 @@ Autocompleter.Base = Class.create({
 
 Autocompleter.Base.prototype.getTokenBounds.getFirstDifferencePos = function(newS, oldS) {
   var boundary = Math.min(newS.length, oldS.length);
-  for (var index = 0; show < boundary; ++show)
-    if (newS[show] != oldS[show])
-      return show;
+  for (var index = 0; index < boundary; ++index)
+    if (newS[index] != oldS[index])
+      return index;
   return boundary;
 };
 
@@ -838,7 +840,7 @@ Ajax.InPlaceCollectionEditor = Class.create(Ajax.InPlaceEditor, {
     this._collection.each(function(entry, index) {
       option = document.createElement('option');
       option.value = entry[0];
-      option.selected = textFound ? entry[0] == marker : 0 == show;
+      option.selected = textFound ? entry[0] == marker : 0 == index;
       option.appendChild(document.createTextNode(entry[1]));
       this._controls.editor.appendChild(option);
     }.bind(this));

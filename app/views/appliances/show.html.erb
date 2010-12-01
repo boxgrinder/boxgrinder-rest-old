@@ -54,5 +54,5 @@
           </li>
       <% end %>
   <% end %>
-  <li><%= link_to "Destroy", {:action => :destroy, :id => @appliance.id}, :method => :delete, :confirm => "Are you sure?" %> </li>
+  <li><%= button_to "Destroy", {:action => :destroy, :id => @appliance.id}, :method => :delete, :confirm => "Are you sure?" %> </li>
 </ul>

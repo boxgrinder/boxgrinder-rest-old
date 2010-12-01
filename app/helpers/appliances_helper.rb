@@ -18,8 +18,13 @@
 # Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
 # 02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
-require 'boxgrinder-core/helpers/appliance-helper'
-require 'boxgrinder-core/validators/appliance-config-validator'
+load '/home/goldmann/torquebox-current/jruby/lib/ruby/gems/1.8/gems/boxgrinder-core-0.1.3/lib/boxgrinder-core/helpers/appliance-helper.rb'
+load '/home/goldmann/torquebox-current/jruby/lib/ruby/gems/1.8/gems/boxgrinder-core-0.1.3/lib/boxgrinder-core/validators/appliance-config-validator.rb'
+
+#require 'boxgrinder-core/helpers/appliance-helper'
+#require 'boxgrinder-core/validators/appliance-config-validator'
+
+require 'rest-config'
 
 module AppliancesHelper
   include BaseHelper
@@ -35,10 +40,10 @@ module AppliancesHelper
     end
 
     begin
-      appliance_configs       = BoxGrinder::ApplianceHelper.new( :log => logger ).read_definitions( definition_file.path, definition_file.content_type )
+      appliance_configs, appliance_config = BoxGrinder::ApplianceHelper.new( :log => logger ).read_definitions( definition_file.path, definition_file.content_type )
       appliance_config_helper = BoxGrinder::ApplianceConfigHelper.new( appliance_configs )
 
-      @appliance_config = appliance_config_helper.merge(appliance_configs.values.first.clone)
+      @appliance_config = appliance_config_helper.merge(appliance_config.clone)
     rescue => e
       render_error( Error.new( "Could not read definition file", e) )
       return

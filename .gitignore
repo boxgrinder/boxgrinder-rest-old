@@ -2,6 +2,7 @@ boxgrinder.log
 .idea
 log
 jboss-appliance.log
+.bundle
 db/*.sqlite3
 vendor
 public/data/
@@ -10,4 +11,6 @@ rpms-cache
 build
 boxgrinder.log
 config/boxgrinder.yml
+log/*.log
+tmp/**/*
 

@@ -1,9 +1,0 @@
-[submodule "lib/boxgrinder-build"]
-	path = lib/boxgrinder-build
-	url = git://github.com/stormgrind/boxgrinder-build.git
-[submodule "vendor/modules/rest-client"]
-	path = vendor/modules/rest-client
-	url = git://github.com/archiloque/rest-client.git
-[submodule "lib/boxgrinder-core"]
-	path = lib/boxgrinder-core
-	url = git://github.com/stormgrind/boxgrinder-core.git
